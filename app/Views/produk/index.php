@@ -32,6 +32,7 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Kategori</th>
                         <th scope="col">Harga</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,6 +42,8 @@
                             <th scope="row"><?= $i++; ?></th>
                             <td><img src="/img/<?= $k['gambar']; ?>" alt="" class="gambar"></td>
                             <td><?= $k['nama']; ?></td>
+                            <td><?= $k['kategori']; ?></td>
+                            <td><?= $k['harga']; ?></td>
                             <td>
                                 <a href="/produk/<?= $k['kode']; ?>" class="btn btn-success">Detail</a>
                             </td>
