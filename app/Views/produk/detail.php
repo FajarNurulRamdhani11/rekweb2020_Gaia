@@ -16,10 +16,10 @@
                             <p class="card-text"><b>Kategori : </b><?= $produk['kategori']; ?></p>
                             <p class="card-text"><small class="text-muted"><b>Harga : </b><?= $produk['harga']; ?></small></p>
 
-                            <a href="/produk$produk/edit/<?= $produk['kode']; ?>" class="btn btn-warning">Edit</a>
+                            <a href="/produk/edit/<?= $produk['kode']; ?>" class="btn btn-warning">Edit</a>
 
 
-                            <form action="/produk$produk/<?= $produk['id']; ?> " method="post" class="d-inline">
+                            <form action="/produk/<?= $produk['id']; ?> " method="post" class="d-inline">
                                 <?= csrf_field(); ?>
                                 <input type="hidden" name="_method" value="DELETE">
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin');">Delete</button>
@@ -28,7 +28,7 @@
                             <br><br>
 
 
-                            <a href="/produk$produk">Kembali ke daftar komik</a>
+                            <a href="/produk">Kembali ke daftar komik</a>
                         </div>
                     </div>
                 </div>

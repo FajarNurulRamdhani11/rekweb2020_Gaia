@@ -6,6 +6,8 @@
         <div class="row">
             <div class="col-6">
                 <h1 class="mt-2">Daftar Produk</h1>
+                <a href="/produk/create" class="btn btn-primary mt-3">Tambah produk</a>
+                <br><br>
                 <form action="" method="post">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Masukkan keyword pencarian.." aria-label="Recipient's username" aria-describedby="button-addon2" name="keyword">
@@ -17,7 +19,6 @@
     </div>
     <div class="row">
         <div class="col">
-            <a href="/produk/create" class="btn btn-primary mt-3">Tambah produk</a>
 
             <?php if (session()->getFlashdata('pesan')) : ?>
                 <div class="alert alert-success" role="alert">
@@ -33,26 +34,29 @@
                         <th scope="col">Kategori</th>
                         <th scope="col">Harga</th>
                         <th scope="col">Aksi</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 1; ?>
-                    <?php foreach ($produk as $k) : ?>
+
+                    <?php $i = 5 * $currentPage - 4; ?>
+                    <?php foreach ($produk as $p) : ?>
                         <tr>
                             <th scope="row"><?= $i++; ?></th>
-                            <td><img src="/img/<?= $k['gambar']; ?>" alt="" class="gambar"></td>
-                            <td><?= $k['nama']; ?></td>
-                            <td><?= $k['kategori']; ?></td>
-                            <td><?= $k['harga']; ?></td>
+                            <td><img src="/img/<?= $p['gambar']; ?>" alt="" class="gambar"></td>
+                            <td><?= $p['nama']; ?></td>
+                            <td><?= $p['kategori']; ?></td>
+                            <td><?= $p['harga']; ?></td>
+
                             <td>
-                                <a href="/produk/<?= $k['kode']; ?>" class="btn btn-success">Detail</a>
+                                <a href="/produk/<?= $p['kode']; ?>" class="btn btn-success">Detail</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
 
-
+            <?= $pager->links('produk', 'produk_pagination'); ?>
         </div>
     </div>
 </div>

@@ -15,17 +15,26 @@ class Produk extends BaseController
     public function index()
     {
 
-        $produk = $this->produkModel->findAll();
+        $currentPage = $this->request->getVar('page_produk') ? $this->request->getVar('page_produk') : 1;
+
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $produk = $this->produkModel->search($keyword);
+        } else {
+            $produk = $this->produkModel;
+        }
 
         $data = [
             'title' => 'Daftar Produk',
-            'produk' => $produk
+            'produk' => $produk->paginate(5, 'produk'),
+            'pager' => $this->produkModel->pager,
+            'currentPage' => $currentPage
+
         ];
 
 
         return view('produk/index', $data);
     }
-
 
     public function detail($kode)
     {
@@ -41,6 +50,7 @@ class Produk extends BaseController
 
         return view('produk/detail', $data);
     }
+
     public function create()
     {
         // session();
@@ -56,7 +66,7 @@ class Produk extends BaseController
     {
         // validasi input
         if (!$this->validate([
-            'produk' => [
+            'nama' => [
                 'rules' => 'required|is_unique[produk.nama]',
                 'errors' => [
                     'required' => '{field} produk harus diisi.',
@@ -73,7 +83,7 @@ class Produk extends BaseController
             ]
         ])) {
             // $validation = \Config\Services::validation();
-            // return redirect()->to('/komik/create')->withInput()->with('validation', $validation);
+            // return redirect()->to('/produk/create')->withInput()->with('validation', $validation);
             return redirect()->to('/produk/create')->withInput();
         }
         // dd('berhasil');
@@ -81,8 +91,10 @@ class Produk extends BaseController
 
         // ambil gambar
         $fileGambar = $this->request->getFile('gambar');
+
+        // dd($fileGambar);
         if ($fileGambar->getError() == 4) {
-            $namaGambar = 'default.jpg';
+            $namaGambar = 'default.png';
         } else {
             // generate nama gambar random
             $namaGambar = $fileGambar->getRandomName();
@@ -92,7 +104,9 @@ class Produk extends BaseController
         }
 
         // ambil nama file gambar
-        // $namaGambar = $fileGambar->getName();
+        $namaGambar = $fileGambar->getName();
+
+
 
 
         $kode = url_title($this->request->getVar('nama'), '-', true);
@@ -110,14 +124,13 @@ class Produk extends BaseController
     }
 
 
-
     public function delete($id)
     {
         // cari gambar berdasarkan id
         $produk = $this->produkModel->find($id);
 
         // cek jika file gambarnya default
-        if ($produk['gambar'] != 'default.jpg') {
+        if ($produk['gambar'] != 'default.png') {
             // hapus gambar
             unlink('img/' . $produk['gambar']);
         }
@@ -127,13 +140,12 @@ class Produk extends BaseController
         return redirect()->to('/produk');
     }
 
-
-    public function edit($kode)
+    public function edit($id)
     {
         $data = [
             'title' => 'Form Ubah Data Produk',
             'validation' => \Config\Services::validation(),
-            'produk' => $this->produkModel->getProduk($kode)
+            'produk' => $this->produkModel->getProduk($id)
         ];
 
         return view('produk/edit', $data);
@@ -166,7 +178,6 @@ class Produk extends BaseController
                 ]
             ]
         ])) {
-            return redirect()->to('/produk/edit/' . $this->request->getVar('kode'))->withInput();
         }
 
         $fileGambar = $this->request->getFile('gambar');
@@ -194,5 +205,6 @@ class Produk extends BaseController
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil diubah.');
+        return redirect()->to('/produk');
     }
 }
