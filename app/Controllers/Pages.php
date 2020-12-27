@@ -2,13 +2,33 @@
 
 namespace App\Controllers;
 
+use App\Models\ProdukModel;
+
 class Pages extends BaseController
 {
+    protected $produkModel;
+    public function __construct()
+    {
+        $this->produkModel = new ProdukModel();
+    }
+
     public function index()
     {
+        $currentPage = $this->request->getVar('page_produk') ? $this->request->getVar('page_produk') : 1;
+
+        $keyword = $this->request->getVar('keyword');
+        if ($keyword) {
+            $produk = $this->produkModel->search($keyword);
+        } else {
+            $produk = $this->produkModel;
+        }
+
         $data = [
-            'title' => 'Home | GAIA ',
-            'tes' => ['satu', 'dua', 'tiga']
+            'title' => 'Home',
+            'produk' => $produk->paginate(3, 'produk'),
+            'pager' => $this->produkModel->pager,
+            'currentPage' => $currentPage
+
         ];
 
 

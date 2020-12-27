@@ -1,7 +1,23 @@
+body {
+  min-height: 100vh;
+  background: #fafafa;
+}
+
+.navbar {
+  background-color: black !important;
+}
+
 .gambar {
   width: 80px;
 }
 
 .table > tbody > tr > * {
   vertical-align: middle;
+}
+
+.footer {
+  background-color: black !important;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }

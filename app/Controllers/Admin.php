@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ProdukModel;
 
-class Produk extends BaseController
+class Admin extends BaseController
 {
     protected $produkModel;
     public function __construct()
@@ -25,7 +25,7 @@ class Produk extends BaseController
         }
 
         $data = [
-            'title' => 'Shop',
+            'title' => 'Admin',
             'produk' => $produk->paginate(5, 'produk'),
             'pager' => $this->produkModel->pager,
             'currentPage' => $currentPage
