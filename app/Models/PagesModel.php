@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ProdukModel extends Model
+class PagesModel extends Model
 {
 
     protected $table = 'produk';
@@ -12,17 +12,12 @@ class ProdukModel extends Model
     protected $allowedFields = ['nama', 'kode', 'kategori', 'harga', 'gambar'];
 
 
-    public function getProduk($kode = false)
+    public function getPages($kode = false)
     {
         if ($kode == false) {
             return $this->findAll();
         }
 
         return $this->where(['kode' => $kode])->first();
-    }
-
-    public function search($keyword)
-    {
-        return $this->table('produk')->like('nama', $keyword)->orLike('kategori', $keyword);
     }
 }

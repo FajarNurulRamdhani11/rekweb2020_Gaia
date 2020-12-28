@@ -33,7 +33,7 @@ class Admin extends BaseController
         ];
 
 
-        return view('produk/index', $data);
+        return view('admin/produk/produk', $data);
     }
 
     public function detail($kode)
@@ -59,7 +59,7 @@ class Admin extends BaseController
             'validation' => \Config\Services::validation()
         ];
 
-        return view('produk/create', $data);
+        return view('admin/create', $data);
     }
 
     public function save()
@@ -83,7 +83,7 @@ class Admin extends BaseController
             ]
         ])) {
 
-            return redirect()->to('/produk/create')->withInput();
+            return redirect()->to('/admin/create')->withInput();
         }
 
 
@@ -146,7 +146,7 @@ class Admin extends BaseController
             'produk' => $this->produkModel->getProduk($id)
         ];
 
-        return view('produk/edit', $data);
+        return view('admin/produk/editProduk', $data);
     }
 
     public function update($id)
@@ -203,6 +203,6 @@ class Admin extends BaseController
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil diubah.');
-        return redirect()->to('/produk');
+        return redirect()->to('/admin');
     }
 }

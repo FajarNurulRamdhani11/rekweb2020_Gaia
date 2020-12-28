@@ -21,3 +21,9 @@ body {
   bottom: 0;
   width: 100%;
 }
+
+.jumbotron {
+  background: url(/img/banner.jpg) no-repeat center center;
+  background-size: cover;
+  min-height: 375px;
+}

@@ -1,63 +1,33 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="container">
-    <div class="col">
-        <div class="row">
-            <div class="col-6">
-                <h1 class="mt-2">Daftar Produk</h1>
-                <a href="/produk/create" class="btn btn-primary mt-3">Tambah produk</a>
-                <br><br>
-                <form action="" method="post">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Masukkan keyword pencarian.." aria-label="Recipient's username" aria-describedby="button-addon2" name="keyword">
-                        <button class="btn btn-outline-secondary" type="submit" name="submit">Cari</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
 
-            <?php if (session()->getFlashdata('pesan')) : ?>
-                <div class="alert alert-success" role="alert">
-                    <?= session()->getFlashdata('pesan'); ?>
-                </div>
-            <?php endif; ?>
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">gambar</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Kategori</th>
-                        <th scope="col">Harga</th>
-                        <th scope="col">Aksi</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <?php $i = 5 * $currentPage - 4; ?>
-                    <?php foreach ($produk as $p) : ?>
-                        <tr>
-                            <th scope="row"><?= $i++; ?></th>
-                            <td><img src="/img/<?= $p['gambar']; ?>" alt="" class="gambar"></td>
-                            <td><?= $p['nama']; ?></td>
-                            <td><?= $p['kategori']; ?></td>
-                            <td><?= $p['harga']; ?></td>
-
-                            <td>
-                                <a href="/produk/<?= $p['kode']; ?>" class="btn btn-success">Detail</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-
-            <?= $pager->links('produk', 'produk_pagination'); ?>
-        </div>
+<!-- Banner -->
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
     </div>
 </div>
+<!-- End Banner -->
+
+<!-- Product -->
+<div class="container">
+    <div class="row mt-2">
+        <?php foreach ($produk as $p) : ?>
+            <div class="col-sm-4 mt-3 d-flex justify-content-center">
+                <div class="card rounded shadow-sm border-0" style="width: 20rem;">
+                    <div class="card-body p-4"><img src="/img/<?= $p['gambar']; ?>" alt="" class="img-fluid d-block mx-auto mb-3">
+                        <h5> <a href="/produk/<?= $p['kode']; ?>" class="text-dark"><?= $p['nama']; ?></a></h5>
+                        <p class="small text-muted font-italic"><?= $p['kategori']; ?></p>
+                        <br>
+                        <h5>Rp. <?= $p['harga']; ?></h5>
+                        <a class="btn" href="/detail">Beli</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+<!-- End Product -->
+
+
 <?= $this->endSection(); ?>

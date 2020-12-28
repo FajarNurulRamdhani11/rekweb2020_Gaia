@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ProdukModel extends Model
+class AdminModel extends Model
 {
 
     protected $table = 'produk';
@@ -12,7 +12,7 @@ class ProdukModel extends Model
     protected $allowedFields = ['nama', 'kode', 'kategori', 'harga', 'gambar'];
 
 
-    public function getProduk($kode = false)
+    public function getAdmin($kode = false)
     {
         if ($kode == false) {
             return $this->findAll();
