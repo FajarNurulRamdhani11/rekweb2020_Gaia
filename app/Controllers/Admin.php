@@ -141,9 +141,8 @@ class Admin extends BaseController
     public function edit($id)
     {
         $data = [
-            'title' => 'Form Ubah Data Produk',
             'validation' => \Config\Services::validation(),
-            'produk' => $this->produkModel->getProduk($id)
+            'produk' => $this->produkModel->getProduct($id)
         ];
 
         return view('admin/produk/editProduk', $data);

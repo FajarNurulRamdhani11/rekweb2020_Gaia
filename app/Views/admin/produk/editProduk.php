@@ -1,6 +1,6 @@
-<?= $this->extend('layout/template'); ?>
+<?= $this->extend('admin/layout/template'); ?>
 
-<?= $this->section('content'); ?>
+<?= $this->section('content-admin'); ?>
 <div class="container">
     <div class="row">
         <div class="col-8">

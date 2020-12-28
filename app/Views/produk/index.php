@@ -20,7 +20,9 @@
                         <p class="small text-muted font-italic"><?= $p['kategori']; ?></p>
                         <br>
                         <h5>Rp. <?= $p['harga']; ?></h5>
-                        <a class="btn" href="/detail">Beli</a>
+                        <a class="btn" href="/detail">
+                            <h5>Select Option</h5>
+                        </a>
                     </div>
                 </div>
             </div>

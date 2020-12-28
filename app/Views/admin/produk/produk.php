@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-6">
             <h1 class="mt-2">Daftar Produk</h1>
-            <a href="/produk/create" class="btn btn-primary mt-3">Tambah produk</a>
+            <a href="/create" class="btn btn-primary mt-3">Tambah produk</a>
             <br><br>
             <form action="" method="post">
                 <div class="input-group mb-3">
@@ -47,7 +47,14 @@
                         <td><?= $p['harga']; ?></td>
                         <td>
                             <span>
-                                <a href="/admin/editProduk/<?= $p['kode']; ?>" class="btn btn-primary">Ubah</a>
+                                <a href="/produk/edit/<?= $p['kode']; ?>" class="btn btn-warning">Edit</a>
+                            </span>
+                            <span>
+                                <form action="/admin/<?= $p['id']; ?>" method="POST" class="d-inline">
+                                    <?= csrf_field(); ?>
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?');">Hapus</button>
+                                </form>
                             </span>
                         </td>
                     </tr>
