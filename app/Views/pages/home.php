@@ -61,21 +61,4 @@
 </a>
 <!-- End Product -->
 
-<hr>
-
-<!-- Join -->
-<div class="container text-center">
-    <h1 class="display-5">Join Our List</h1>
-    <p>To get early information about our latest product</p>
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Email Address">
-            <br>
-            <button type="submit" class="btn btn-dark">Submit</button>
-        </div>
-    </form>
-</div>
-<!-- End Join -->
-
 <?= $this->endSection(); ?>

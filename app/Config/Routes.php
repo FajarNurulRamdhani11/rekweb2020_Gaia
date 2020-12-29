@@ -33,9 +33,16 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Pages::index');
 
-$routes->get('/produk/create', 'Produk::create');
-$routes->get('/produk/edit/(:segment)', 'Produk::edit/$1');
-$routes->delete('/produk/(:num)', 'Produk::delete/$1');
+// $routes->get('/produk/create', 'Produk::create');
+// $routes->get('/produk/edit/(:segment)', 'Produk::edit/$1');
+// $routes->delete('/produk/(:num)', 'Produk::delete/$1');
+// $routes->get('/produk/(:any)', 'Produk::detail/$1');
+
+$routes->get('/admin', 'Admin::index');
+$routes->get('/admin/tambah-produk', 'Admin::addProduk');
+$routes->delete('/admin/(:num)', 'Admin::delete/$1');
+$routes->get('/admin/edit/(:segment)', 'Admin::edit/$1');
+// $routes->get('/admin/customers', 'Admin::users');
 $routes->get('/produk/(:any)', 'Produk::detail/$1');
 
 

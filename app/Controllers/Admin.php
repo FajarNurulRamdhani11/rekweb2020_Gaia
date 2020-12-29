@@ -36,22 +36,8 @@ class Admin extends BaseController
         return view('admin/produk/produk', $data);
     }
 
-    public function detail($kode)
-    {
-        $data = [
-            'title' => 'Detail Produk',
-            'produk' => $this->produkModel->getProduk($kode)
-        ];
 
-        // jika komik tidak ada di label
-        if (empty($data['produk'])) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('nama produk ' . $kode . ' tidak ditemukan.');
-        }
-
-        return view('produk/detail', $data);
-    }
-
-    public function create()
+    public function addProduk()
     {
         // session();
         $data = [
@@ -59,7 +45,7 @@ class Admin extends BaseController
             'validation' => \Config\Services::validation()
         ];
 
-        return view('admin/create', $data);
+        return view('admin/produk/addProduk', $data);
     }
 
     public function save()
@@ -83,7 +69,7 @@ class Admin extends BaseController
             ]
         ])) {
 
-            return redirect()->to('/admin/create')->withInput();
+            return redirect()->to('/admin/produk/addProduk')->withInput();
         }
 
 
@@ -118,7 +104,7 @@ class Admin extends BaseController
 
         session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
 
-        return redirect()->to('/produk');
+        return redirect()->to('/admin');
     }
 
 
@@ -135,14 +121,14 @@ class Admin extends BaseController
 
         $this->produkModel->delete($id);
         session()->setFlashdata('pesan', 'Data berhasil dihapus.');
-        return redirect()->to('/produk');
+        return redirect()->to('/admin');
     }
 
     public function edit($id)
     {
         $data = [
             'validation' => \Config\Services::validation(),
-            'produk' => $this->produkModel->getProduct($id)
+            'produk' => $this->produkModel->getProduk($id)
         ];
 
         return view('admin/produk/editProduk', $data);

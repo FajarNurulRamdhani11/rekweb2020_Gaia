@@ -2,37 +2,31 @@
 
 <?= $this->section('content'); ?>
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <h2 class="mtk-2">Detail Produk</h2>
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="/img/<?= $produk['gambar']; ?>" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= $produk['nama']; ?></h5>
-                            <p class="card-text"><b>Kategori : </b><?= $produk['kategori']; ?></p>
-                            <p class="card-text"><small class="text-muted"><b>Harga : </b><?= $produk['harga']; ?></small></p>
-
-                            <a href="/produk/edit/<?= $produk['kode']; ?>" class="btn btn-warning">Edit</a>
-
-
-                            <form action="/produk/<?= $produk['id']; ?> " method="post" class="d-inline">
-                                <?= csrf_field(); ?>
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin');">Delete</button>
-                            </form>
-
-                            <br><br>
-
-
-                            <a href="/produk">Kembali ke daftar komik</a>
-                        </div>
+    <div class="row justify-content-md-center">
+        <div class="col-md-6 mt-5 mr-5 pr-5">
+            <img src="/img/<?= $produk['gambar']; ?>" width="100%">
+        </div>
+        <div class="col mt-5">
+            <span class="align-middle">
+                <h3 class="display-4"><?= $produk['nama']; ?></h3>
+                <p class="display-5"><?= $produk['kategori']; ?></p>
+                <br>
+                <h3 class="font-weight-light">Rp. <?= $produk['harga']; ?></h3>
+                <br>
+                <h5 class="font-weight-light">Size</h5>
+                <div class="dropdown mb-5">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose Size
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Small</a>
+                        <a class="dropdown-item" href="#">Medium</a>
+                        <a class="dropdown-item" href="#">Large</a>
+                        <a class="dropdown-item" href="#">Extra Large</a>
                     </div>
                 </div>
-            </div>
+                <button type="button" class="btn btn-secondary btn-lg btn-block">Add To Cart</button>
+            </span>
         </div>
     </div>
 </div>
