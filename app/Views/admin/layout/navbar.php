@@ -6,7 +6,11 @@
     </button>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
+            <?php if (logged_in()) : ?>
+                <a class="nav-link" href="/logout">Sign Out</a>
+            <?php else : ?>
+                <a class="nav-link" href="/login">Sign In</a>
+            <?php endif; ?>
         </li>
     </ul>
 </nav>

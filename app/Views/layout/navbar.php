@@ -12,6 +12,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="/produk">Shop</a>
             </li>
+            <?php if (in_groups('admin')) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Dashboard</a>
+                </li>
+            <?php endif; ?>
         </ul>
 
         <ul class="navbar-nav ml-auto">
@@ -22,7 +27,11 @@
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="/admin">Sign In</a>
+                <?php if (logged_in()) : ?>
+                    <a class="nav-link" href="/logout">Sign Out</a>
+                <?php else : ?>
+                    <a class="nav-link" href="/login">Sign In</a>
+                <?php endif; ?>
             </li>
         </ul>
     </div>

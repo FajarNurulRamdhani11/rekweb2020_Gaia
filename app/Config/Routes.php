@@ -38,10 +38,10 @@ $routes->get('/', 'Pages::index');
 // $routes->delete('/produk/(:num)', 'Produk::delete/$1');
 // $routes->get('/produk/(:any)', 'Produk::detail/$1');
 
-$routes->get('/admin', 'Admin::index');
-$routes->get('/admin/tambah-produk', 'Admin::addProduk');
-$routes->delete('/admin/(:num)', 'Admin::delete/$1');
-$routes->get('/admin/edit/(:segment)', 'Admin::edit/$1');
+$routes->get('/admin', 'Admin::index', ['filter' => 'role:admin']);
+$routes->get('/admin/tambah-produk', 'Admin::addProduk', ['filter' => 'role:admin']);
+$routes->delete('/admin/(:num)', 'Admin::delete/$1', ['filter' => 'role:admin']);
+$routes->get('/admin/edit/(:segment)', 'Admin::edit/$1', ['filter' => 'role:admin']);
 // $routes->get('/admin/customers', 'Admin::users');
 $routes->get('/produk/(:any)', 'Produk::detail/$1');
 
